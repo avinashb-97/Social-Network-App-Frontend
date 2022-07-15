@@ -6,8 +6,6 @@ import AddComment from './AddComment';
 import LikeCount from './LikeCount';
 import {Accordion} from 'react-bootstrap';
 
-
-
 const Post = () => {
 
     const content = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae fuga incidunt consequatur tenetur doloremque officia corrupti provident tempore vitae labore?";

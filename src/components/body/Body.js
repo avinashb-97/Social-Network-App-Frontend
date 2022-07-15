@@ -1,5 +1,5 @@
 import './body.css';
-import Post from '../Post.js/Post';
+import Post from '../post/Post';
 import AddContent from '../addContent/AddContent';
 
 const Body = () => {
