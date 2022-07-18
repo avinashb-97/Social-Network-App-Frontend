@@ -2,8 +2,9 @@
   text-align: center;
 }
 
-.main-body-bg {
+.main-bg {
   background-color: #e7eaea;
+  height: 100vh;
 }
 
 .App-logo {

@@ -4,8 +4,7 @@ import AddContent from '../addContent/AddContent';
 
 const Body = () => {
     return (
-
-
+        
         <div className="container-fluid main-body-bg">
             <div class="row">
                 <div class="col-sm">
