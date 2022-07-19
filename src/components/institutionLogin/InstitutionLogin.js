@@ -1,39 +1,71 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './insLogin.css';
+import { useState } from 'react';
+import Axios from 'axios';
+import Constant from '../../constants/Constant';
+import AuthService from '../../services/AuthService';
 
 const InstitutionLogin = () => {
+
+    const navigate = useNavigate();
+
+    const [data, setData] = useState({email:"", password:""});
+
+    const login_url = Constant.base_url+"login";
+    
+    const handleUpdate = (e) =>{
+        const newdata = {...data};
+        newdata[e.target.id] = e.target.value;
+        setData(newdata);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        Axios.post(login_url, data)
+        .then(res => {
+            const token = res.headers.authorization;
+            AuthService.login(token);
+            navigate("/institution/home");
+        })
+        .catch(res => {
+            console.log(res);
+        })
+    }
+
     return (
-        <div class="content">
-        <div class="container">
-            <div class="row justify-content-center">
-            <div class="col-md-6 contents">
-                <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="form-block">
-                        <div class="mb-4">
+        <div className="content">
+        <div className="container">
+            <div className="row justify-content-center">
+            <div className="col-md-6 contents">
+                <div className="row justify-content-center">
+                <div className="col-md-12">
+                    <div className="form-block">
+                        <div className="mb-4">
                         <h3>Institution Login</h3>
                     </div>
-                    <form action="#" method="post">
+
+                    <form onSubmit={(e) => handleSubmit(e)}>
                         <div>
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username"/>
+                            <label htmlFor="email">Email</label>
+                            <input type="text" className="form-control" id="email" onChange={(e) => handleUpdate(e)}/>
                         </div>
                         <div>
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password"/>
+                            <label htmlFor="password">Password</label>
+                            <input type="password" className="form-control" id="password" onChange={(e) => handleUpdate(e)}/>
                         </div>
                         
-                        <div class="mb-4 mt-2">
-                            <label><span class="caption">Remember me</span>
-                                <input type="checkbox" checked="checked"/>
-                                <div class="control__indicator"></div>
+                        <div className="mb-4 mt-2">
+                            <label><span className="caption">Remember me</span>
+                                <input type="checkbox" defaultChecked/>
+                                <div className="control__indicator"></div>
                             </label>
                             
-                            <span className='float-end'><a href="#" class="">Forgot Password</a></span> 
+                            <span className='float-end'><a href="#" className="">Forgot Password</a></span> 
                         </div>
 
-                        <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary set-mid" />
-                        <Link to="/institution/create" > Sign up here</Link>
+                        <input type="submit" value="Log In" className="btn btn-pill text-white btn-block btn-primary set-mid" />
+                        <Link to="/institution/create" className='mt-4'> Sign up here</Link>
                     </form>
                     </div>
                 </div>
