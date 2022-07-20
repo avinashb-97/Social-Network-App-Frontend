@@ -1,11 +1,36 @@
 import AuthService from "../../services/AuthService";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from "react-router-dom";
+
 
 const InstitutionHome = () =>
 {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        AuthService.logout();
+        navigate("/institution");
+    }
+
     return (
         <div>
-            <div>Logged in successfully !</div>
-            <button onClick={AuthService.logout}>logout</button>
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Container>
+                    <Navbar.Brand href="#home">Social Network</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="#features" disabled>Queen Mary University of London</Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
+                    </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </div>
     )
 }

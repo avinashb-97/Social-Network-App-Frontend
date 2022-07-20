@@ -4,7 +4,8 @@ import './insLogin.css';
 import { useState } from 'react';
 import Axios from 'axios';
 import Constant from '../../constants/Constant';
-
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InstitutionSignup = () => {
 
@@ -58,20 +59,23 @@ const InstitutionSignup = () => {
             <div className="col-md-6 contents">
                 <div className="row justify-content-center">
                 <div className="col-md-12">
-                    <div className="form-block">
+                    <div className="form-block position-relative">
+                    <Link to="/institution" className='mb-2 position-absolute arrow-position'>
+                        <span><FontAwesomeIcon icon={faLeftLong} color='black' className='photo-text'></FontAwesomeIcon></span>
+                    </Link>
                         <div className="mb-4">
-                        <h3>Institution Signup</h3>
-                    </div>
+                            <h3>Institution Signup</h3>
+                         </div>
                     {navigate && <Navigate to="/institution" replace={true}/>}
                     {alert.show && <AlertBox variant={alert.type} message={alert.message}/>}
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div>
                             <label htmlFor="name">Institution Name</label>
-                            <input onChange={(e) => handleUpdate(e)} type="text" className="form-control" id="name"/>
+                            <input autoComplete='off' onChange={(e) => handleUpdate(e)} type="text" className="form-control" id="name"/>
                         </div>
                         <div>
                             <label htmlFor="adminMail">Admin Email</label>
-                            <input onChange={(e) => handleUpdate(e)} type="text" className="form-control" id="adminMail"/>
+                            <input autoComplete='off' onChange={(e) => handleUpdate(e)} type="text" className="form-control" id="adminMail"/>
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>

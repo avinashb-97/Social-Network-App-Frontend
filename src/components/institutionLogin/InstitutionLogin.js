@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Axios from 'axios';
 import Constant from '../../constants/Constant';
 import AuthService from '../../services/AuthService';
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InstitutionLogin = () => {
 
@@ -40,15 +42,19 @@ const InstitutionLogin = () => {
             <div className="col-md-6 contents">
                 <div className="row justify-content-center">
                 <div className="col-md-12">
-                    <div className="form-block">
-                        <div className="mb-4">
+                    <div className="form-block position-relative">
+                        
+                    <Link to="/" className='mb-2 position-absolute arrow-position'>
+                        <span><FontAwesomeIcon icon={faLeftLong} color='black' className='photo-text'></FontAwesomeIcon></span>
+                    </Link>
+                    <div className="mb-4">
                         <h3>Institution Login</h3>
                     </div>
 
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div>
                             <label htmlFor="email">Email</label>
-                            <input type="text" className="form-control" id="email" onChange={(e) => handleUpdate(e)}/>
+                            <input type="text" className="form-control" id="email" autoComplete='off' onChange={(e) => handleUpdate(e)}/>
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>
