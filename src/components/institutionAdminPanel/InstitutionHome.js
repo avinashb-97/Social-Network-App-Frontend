@@ -1,36 +1,65 @@
-import AuthService from "../../services/AuthService";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { useNavigate } from "react-router-dom";
-
+import SideNav from "./SideNav";
+import NavBar from "./NavBar";
+import './insHome.css';
+import { useState } from "react";
+import StudentApprovals from "./StudentApprovals";
+import Departments from "./Departments";
 
 const InstitutionHome = () =>
 {
+    
+    
+    const sideMenu = [ "Student Approvals", "Departments", "Courses", "Modules", "Students", "Staffs"];
+    const [activeMenu, setActiveMenu] = useState(sideMenu[0]);
+    
+    const studentApproval = () => {
+        
+    }
+    const departments = () => {
+        
+    }
+    const courses = () => {
+        
+    }
+    const modules = () => {
+        
+    }
+    const students = () => {
+        
+    }
+    const staffs = () => {
+        
+    }
 
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        AuthService.logout();
-        navigate("/institution");
+    const changeActiveButton = (e) => {
+        const id = e.target.id;
+        setActiveMenu(id);
     }
 
     return (
+
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
-                    <Navbar.Brand href="#home">Social Network</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#features" disabled>Queen Mary University of London</Nav.Link>
-                    </Nav>
-                    <Nav>
-                        <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
-                    </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+            <NavBar />
+                <div className="container-fluid">
+                    <div className="row">
+                        <nav id="sidebar" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                                <SideNav menuList={sideMenu} currentMenu={activeMenu} onClickMenu={changeActiveButton}/>
+                        </nav>
+                        <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+                            <h1 className="h2">{activeMenu}</h1>
+                            <div className="container-fluid bg-white dash-board">
+                                <div className="p-3">    
+                                    {activeMenu == sideMenu[0] && <StudentApprovals/>}
+                                    {activeMenu == sideMenu[1] && <Departments/>}
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                    
+                </div>
+                
+
+                
         </div>
     )
 }
