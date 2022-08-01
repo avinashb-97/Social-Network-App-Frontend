@@ -8,6 +8,8 @@ import InstitutionHome from './components/institutionAdminPanel/InstitutionHome'
 import PrivateRoutes from './components/utils/PrivateRoute';
 import LoginPage from './components/loginPage/LoginPage';
 import RegisterPage from './components/loginPage/RegisterPage';
+import Constant from './constants/Constant';
+import Home from './components/home/Home';
 
 function App() {
   return (
@@ -18,18 +20,11 @@ function App() {
         
         <Route exact path="/" element = { <LoginPage/> } /> 
         <Route exact path="/register" element = { <RegisterPage/> } />
-        <Route 
-        exact
-        path="/home"
-        element={
-          // <Header />
-          <Body />
-        }
-        />
+        <Route exact path="/home" element={ <Home /> } />
 
         
         <Route exact path="/institution" element={ <InstitutionLogin /> } />
-        <Route element={<PrivateRoutes navigateTo="/institution" />}>
+        <Route element={<PrivateRoutes navigateTo="/institution" userType={Constant.userTypes.ADMIN} />}>
           <Route exact path="/institution/home" element={ <InstitutionHome /> } />
         </Route>
 

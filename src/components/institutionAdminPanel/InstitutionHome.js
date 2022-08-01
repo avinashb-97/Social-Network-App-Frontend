@@ -2,34 +2,13 @@ import SideNav from "./SideNav";
 import NavBar from "./NavBar";
 import './insHome.css';
 import { useState } from "react";
-import StudentApprovals from "./StudentApprovals";
-import Departments from "./Departments";
+import ContentContainer from "./ContentContainer";
+import Constant from "../../constants/Constant";
 
 const InstitutionHome = () =>
-{
-    
-    
-    const sideMenu = [ "Student Approvals", "Departments", "Courses", "Modules", "Students", "Staffs"];
+{   
+    const sideMenu = Constant.instituteSideMenu;
     const [activeMenu, setActiveMenu] = useState(sideMenu[0]);
-    
-    const studentApproval = () => {
-        
-    }
-    const departments = () => {
-        
-    }
-    const courses = () => {
-        
-    }
-    const modules = () => {
-        
-    }
-    const students = () => {
-        
-    }
-    const staffs = () => {
-        
-    }
 
     const changeActiveButton = (e) => {
         const id = e.target.id;
@@ -46,20 +25,16 @@ const InstitutionHome = () =>
                                 <SideNav menuList={sideMenu} currentMenu={activeMenu} onClickMenu={changeActiveButton}/>
                         </nav>
                         <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
-                            <h1 className="h2">{activeMenu}</h1>
+                            {/* <h1 className="h2">{activeMenu}</h1>
                             <div className="container-fluid bg-white dash-board">
-                                <div className="p-3">    
-                                    {activeMenu == sideMenu[0] && <StudentApprovals/>}
-                                    {activeMenu == sideMenu[1] && <Departments/>}
-                                </div>
-                            </div>
+                                <div className="p-3">     */}
+                                    <ContentContainer activeMenu={activeMenu}/>
+                                {/* </div>
+                            </div> */}
                         </main>
                     </div>
                     
                 </div>
-                
-
-                
         </div>
     )
 }

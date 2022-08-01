@@ -1,6 +1,6 @@
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './insLogin.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Constant from '../../constants/Constant';
 import AuthService from '../../services/AuthService';
@@ -10,6 +10,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const InstitutionLogin = () => {
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(AuthService.isLoggedIn(Constant.userTypes.ADMIN))
+        {
+            navigate("/institution/home");
+        }
+    },[])
+    
 
     const [data, setData] = useState({email:"", password:""});
 
@@ -27,7 +35,7 @@ const InstitutionLogin = () => {
         Axios.post(login_url, data)
         .then(res => {
             const token = res.headers.authorization;
-            AuthService.login(token);
+            AuthService.login(token, Constant.userTypes.ADMIN);
             navigate("/institution/home");
         })
         .catch(res => {
