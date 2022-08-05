@@ -24,8 +24,6 @@ const Body = ({user}) => {
     },[]);
 
     const addContent = (content, image) => {
-        console.log(content);
-        console.log(image);
         const data = {content:content, image:image };
 
         const formData = new FormData();
@@ -82,6 +80,28 @@ const Body = ({user}) => {
         })
     }
 
+    const handleAddComment = (post, comment) => {
+
+        const token = AuthService.getCurrentUserToken();
+        Axios.defaults.headers.common['Authorization'] = token;
+        const commentUrl = postUrl+"/"+post.id+"/comment";
+        const data = {comment: comment};
+        Axios.post(commentUrl, data)
+        .then(res => {
+            const currData = postData.map((currPost) => {
+                if(currPost == post)
+                {
+                    return res.data;
+                }
+                return currPost;
+            });
+            setPostData(currData);
+        })
+        .catch(res => {
+            console.log(res);
+        })
+    }
+
     return (
         
         <div className="container-fluid main-body-bg">
@@ -92,7 +112,7 @@ const Body = ({user}) => {
                 <div className="col-sm">
                     <AddContent onAddContent={addContent}/>
                     { postData.map((post) => {
-                        return <Post key={post.id} postData={post} user={user} deletePostAction={deletePost} onClickLike={onClickLike}/>
+                        return <Post key={post.id} postData={post} user={user} deletePostAction={deletePost} onClickLike={onClickLike} onAddComment={handleAddComment}/>
                     })}
                 </div>
                 <div className="col-sm">

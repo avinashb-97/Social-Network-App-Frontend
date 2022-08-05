@@ -55,7 +55,7 @@ const AddContent = ({onAddContent}) => {
     }
 
     return (
-        <div className="share border bg-white rounded shadow mt-5">
+        <div className="share border bg-white rounded shadow mt-4">
             <div className="d-flex flex-row inputs p-2 py-4">
                 <textarea className="border-0 form-control share-input" id="content" value={contentText} ref={textAreaRef} onChange={(event) => handleKeyDown(event)} cols="40" rows="2" placeholder='Share your thoughts'></textarea>
                 </div>

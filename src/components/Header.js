@@ -1,4 +1,4 @@
-
+import AccountMenu from "./accountMenu/AccountMenu";
 
 const Header = () => {
     return (
@@ -31,6 +31,7 @@ const Header = () => {
                     </li>
                 </ul>
                 </div>
+                <AccountMenu />
             </div>   
         </nav>
     );

@@ -24,7 +24,7 @@ const Home = () => {
     },[]);
 
     return (
-        <div>
+        <div style={{overflow:'hidden'}}>
             <Header/>
             <Body user={userData}/>
         </div>

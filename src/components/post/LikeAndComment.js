@@ -4,7 +4,7 @@ import { faThumbsUp, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import './post.css';
 import { useState } from 'react';
 
-const LikeAndComment = ({postData, onClickLike}) => {
+const LikeAndComment = ({postData, onClickLike, handleFocusCommentBox}) => {
 
 
     const [colorClass, setColorClass] = useState(postData.likedByUser ? "text-primary" : "");
@@ -33,7 +33,7 @@ const LikeAndComment = ({postData, onClickLike}) => {
             </div>
             <div className="dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted p-1" data-bs-toggle="collapse" data-bs-target="#collapsePost1" aria-expanded="false" aria-controls="collapsePost1">
                 <FontAwesomeIcon icon={faCommentAlt}></FontAwesomeIcon>
-                <p className="m-0 likecomment-margin" id='comment-text'>Comment</p>
+                <p className="m-0 likecomment-margin" id='comment-text' onClick={handleFocusCommentBox}>Comment</p>
             </div>
         </div>
     );
