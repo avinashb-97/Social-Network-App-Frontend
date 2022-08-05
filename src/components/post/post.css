@@ -53,3 +53,15 @@
     width: 100%;
     text-align: right;
 }
+
+.show-space {
+    white-space: pre-line;
+}
+
+.blue-color {
+    color: #007bff;
+}
+
+#like-text, #comment-text {
+    margin-left: 5px !important;
+}

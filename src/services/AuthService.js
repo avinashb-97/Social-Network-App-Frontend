@@ -14,7 +14,7 @@ const login = (token, usertype) => {
     }
 }
 const isLoggedIn = (userType) => {
-    return localStorage.getItem("token") != null && localStorage.getItem("user_type") == Constant.userTypes.ADMIN;
+    return localStorage.getItem("token") != null && localStorage.getItem("user_type") == userType;
 }
 
 const getCurrentUserToken = () => {

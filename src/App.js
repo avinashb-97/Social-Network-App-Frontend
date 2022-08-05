@@ -20,8 +20,10 @@ function App() {
         
         <Route exact path="/" element = { <LoginPage/> } /> 
         <Route exact path="/register" element = { <RegisterPage/> } />
-        <Route exact path="/home" element={ <Home /> } />
-
+        
+        <Route element={<PrivateRoutes navigateTo="/" userType={Constant.userTypes.USER} />}>
+          <Route exact path="/home" element={ <Home /> } />
+        </Route>
         
         <Route exact path="/institution" element={ <InstitutionLogin /> } />
         <Route element={<PrivateRoutes navigateTo="/institution" userType={Constant.userTypes.ADMIN} />}>

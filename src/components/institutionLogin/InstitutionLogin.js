@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './insLogin.css';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';

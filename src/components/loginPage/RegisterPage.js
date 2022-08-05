@@ -2,18 +2,23 @@
 import './loginPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faKey, faBuildingColumns, faBuilding, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Constant from '../../constants/Constant';
+import AlertBox from '../utils/AlertBox';
 
 const RegisterPage = () => {
+
+
+    const navigate = useNavigate();
+    const [alert, setAlert] = useState({show:false, type:"", message:""});
 
     const [institutions, setInstitutions] = useState([]);
     const [departments, setDepartments] = useState([]);
 
     const [departmentId, setDepartmentId] = useState(-1);
-    const [courseId, setCoursId] = useState(-1);
+    const [courseId, setCourseId] = useState(-1);
     const [instituteId, setInstituteId] = useState(-1);
     const [name, setName] = useState("");
     const [mail, setMail] = useState("");
@@ -22,6 +27,7 @@ const RegisterPage = () => {
     const [sharecode, setSharecode] = useState("");
 
     const institutionUrl = Constant.base_url+"api/institute";
+    const registerUrl = Constant.base_url+"api/user";
 
     useEffect(() => {
 
@@ -33,6 +39,14 @@ const RegisterPage = () => {
             console.log(res);
         })
     },[]);
+
+    const setAlertBox = (show, type, message) => {
+        const newAlert = {};
+        newAlert.show = show;
+        newAlert.type = type;
+        newAlert.message = message;
+        setAlert(newAlert);
+    }
 
     const handleSelectChange = (e) => {
         const index = e.target.selectedIndex;
@@ -50,7 +64,7 @@ const RegisterPage = () => {
     }
 
     const handeCourseChange = (id) => {
-        setCoursId(id);
+        setCourseId(id);
     }
 
     const handleDepartmentChange = (id) => {
@@ -84,6 +98,7 @@ const RegisterPage = () => {
     }
 
     const updateConfirmPassword = (e) => {
+
         const val = e.target.value;
         setConfirmPassword(val);
         e.target.setCustomValidity("");
@@ -92,7 +107,6 @@ const RegisterPage = () => {
             e.target.setCustomValidity('Passwords do not match');
             return;
         }
-        
     }
 
     const updateSharecode = (e) => {
@@ -104,14 +118,38 @@ const RegisterPage = () => {
         event.preventDefault();
         
         const confirm = document.getElementById("confirmPassword");
-        
-        console.log(password+"   "+ confirmPassword);
         if(password !== confirmPassword)
         {
             return;
         }
-        
+
         console.log(name+" "+mail+" "+password+" "+sharecode+" "+instituteId+" "+departmentId+" "+courseId);
+
+        const data = {
+            name: name,
+            mail: mail,
+            password: password,
+            confirmPassword: confirmPassword,
+            instituteId: instituteId,
+            departmentId: departmentId,
+            courseId: courseId,
+            code: sharecode
+        };
+
+        console.log(data);
+
+        Axios.post(registerUrl, data)
+        .then(res => {
+            setAlertBox(true, "success", "User Created successfully !");
+            console.log(res);
+            setTimeout(function (){
+                navigate("/");                 
+              }, 1000); 
+        })
+        .catch(res => {
+            setAlertBox(true, "danger", "Error while creating user !");
+            console.log(res);
+        })
     }
 
     return (
@@ -125,6 +163,7 @@ const RegisterPage = () => {
                         </div>
                         <div className="text-center mb-4">
                     <h4>Create your new account here !</h4>
+                    {alert.show && <AlertBox variant={alert.type} message={alert.message}/>}
                 </div>
                         <form className="px-3" onSubmit={(e)=> registerUser(e)}>
                             

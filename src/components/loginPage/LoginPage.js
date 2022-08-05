@@ -2,9 +2,51 @@
 import './loginPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faBuildingColumns, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import AuthService from '../../services/AuthService';
+import Constant from '../../constants/Constant';
+import Axios from 'axios';
 
 const LoginPage = () => {
+
+    const navigate = useNavigate();
+    const [data, setData] = useState({email:"", password:""});
+    
+    const login_url = Constant.base_url+"login";
+
+    useEffect(() => {
+        if(AuthService.isLoggedIn(Constant.userTypes.ADMIN))
+        {
+            navigate("/institution/home");
+        }
+        if(AuthService.isLoggedIn(Constant.userTypes.USER))
+        {
+            navigate("/home");
+        }
+    },[])
+
+
+    const handleUpdate = (e) =>{
+        const newdata = {...data};
+        newdata[e.target.id] = e.target.value;
+        setData(newdata);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        Axios.post(login_url, data)
+        .then(res => {
+            const token = res.headers.authorization;
+            AuthService.login(token, Constant.userTypes.USER);
+            navigate("/home");
+        })
+        .catch(res => {
+            console.log(res);
+        })
+    }
+
     return (
         <div className="container-fluid login-page">
             <div className="row">
@@ -18,14 +60,14 @@ const LoginPage = () => {
                         <div className="text-center mb-4">
                     <h4>Already have an account ?</h4>
                 </div>
-                        <form className="px-3">
+                        <form className="px-3" onSubmit={(e) => handleSubmit(e)}>
                             <div className="form-input">
                                 <span><FontAwesomeIcon icon={faEnvelope} color='grey' className='photo-text'></FontAwesomeIcon></span>
-                                <input type="email" name="" placeholder="Email Address" tabIndex="10"required/>
+                                <input type="email" id='email' placeholder="Email Address" tabIndex="10" onChange={(e) => handleUpdate(e)} required/>
                             </div>
                             <div className="form-input">
                                 <span><FontAwesomeIcon icon={faLock} color='grey' className='photo-text'></FontAwesomeIcon></span>
-                                <input type="password" name="" placeholder="Password" required/>
+                                <input type="password" id='password' name="" placeholder="Password" onChange={(e) => handleUpdate(e)} required/>
                             </div>
                         <div className="row mb-5">
                             <div className="">

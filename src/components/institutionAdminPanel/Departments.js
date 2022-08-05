@@ -16,7 +16,7 @@ import Courses from './Courses';
 const Departments = () => {
 
     useEffect(() => {
-        let token = AuthService.getCurrentUserToken();
+        const token = AuthService.getCurrentUserToken();
         Axios.defaults.headers.common['Authorization'] = token;
         Axios.get(department_url)
         .then(res => {
