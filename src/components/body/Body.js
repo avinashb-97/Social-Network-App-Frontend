@@ -107,7 +107,6 @@ const Body = ({user}) => {
         <div className="container-fluid main-body-bg">
             <div className="row">
                 <div className="col-sm">
-                
                 </div>
                 <div className="col-sm">
                     <AddContent onAddContent={addContent}/>
@@ -116,7 +115,6 @@ const Body = ({user}) => {
                     })}
                 </div>
                 <div className="col-sm">
-                
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ const Home = () => {
 
     return (
         <div style={{overflow:'hidden'}}>
-            <Header/>
+            <Header currElement={'home'}/>
             <Body user={userData}/>
         </div>
     );

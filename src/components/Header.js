@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import AccountMenu from "./accountMenu/AccountMenu";
 
-const Header = () => {
+const Header = ({currElement}) => {
     return (
         <nav className="navbar navbar-expand-lg bg-light fixed-top justify-content-end d-flex">
             <div className="container-fluid">
@@ -9,25 +10,18 @@ const Header = () => {
                 </button>
                 <a className="navbar-brand" href="#">Social Network</a>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-                {/* <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-success" type="submit">Search</button>
-                </form> */}
-                <ul className="navbar-nav">
+                <ul className="navbar-nav" style={{position: 'fixed', transform: 'translate(-50%, -50%)', left: '50%', top: '30px'}}>
                     <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">Home</a>
+                        <Link to="/home" className={currElement == 'home' ? "nav-link active" : "nav-link"}>Home</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Network</a>
+                        <Link to="/peers" className={currElement == 'peers' ? "nav-link active" : "nav-link"}>Peers</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Events</a>
+                        <Link to="/groups" className={currElement == 'groups' ? "nav-link active" : "nav-link"}>Groups</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Jobs</a>
-                    </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="#">My Profile</a>
+                        <Link to="/events" className={currElement == 'events' ? "nav-link active" : "nav-link"}>Events</Link>
                     </li>
                 </ul>
                 </div>

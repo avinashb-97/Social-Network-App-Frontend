@@ -1,5 +1,4 @@
 import jwtDecode from "jwt-decode";
-import Constant from "../constants/Constant";
 
 const logout = () => {
     localStorage.removeItem("token");
@@ -25,9 +24,13 @@ const decodeToken = () => {
     return jwtDecode(localStorage.getItem("token"));
 }
 
+const getCurrentUserMail = () => {
+    const token = decodeToken();
+    return token.sub;
+}
+
 const getUserRoles = () => {
     const token = decodeToken();
-    console.log(token);
     return token.roles;
 
 }
@@ -37,7 +40,8 @@ const AuthService = {
     logout,
     login,
     getCurrentUserToken,
-    isLoggedIn
+    isLoggedIn,
+    getCurrentUserMail
 };
 
 export default AuthService;
