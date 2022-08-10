@@ -13,6 +13,8 @@ import Home from './components/home/Home';
 import PeerPage from './components/peerPage/PeerPage';
 import GroupPage from './components/groupPage/GroupPage';
 import EventPage from './components/eventsPage/EventPage';
+import ProfilePage from './components/profilePage/ProfilePage';
+import PeerProfilePage from './components/profilePage/PeerProfilePage';
 
 function App() {
   return (
@@ -21,12 +23,15 @@ function App() {
         
         <Route exact path="/" element = { <LoginPage/> } /> 
         <Route exact path="/register" element = { <RegisterPage/> } />
+
         
         <Route element={<PrivateRoutes navigateTo="/" userType={Constant.userTypes.USER} />}>
           <Route exact path="/home" element={ <Home /> } />
           <Route exact path="/peers" element={ <PeerPage /> } />
           <Route exact path="/groups" element={ <GroupPage /> } />
           <Route exact path="/events" element={ <EventPage /> } />
+          <Route exact path="/profile" element={ <ProfilePage /> } />
+          <Route path='/peers/:id' element={<PeerProfilePage/>} />
         </Route>
         
         <Route exact path="/institution" element={ <InstitutionLogin /> } />

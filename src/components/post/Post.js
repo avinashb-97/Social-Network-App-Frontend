@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import LikeCount from './LikeCount';
 import {Accordion } from 'react-bootstrap';
 import Axios from 'axios';
+import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
 
 const Post = ({postData, user, deletePostAction, onClickLike, onAddComment}) => {
 
@@ -43,14 +44,14 @@ const Post = ({postData, user, deletePostAction, onClickLike, onAddComment}) => 
                     <Accordion.Header className='d-flex justify-content-end pointer'><p className="m-0 accordion-text">{commentCount}</p></Accordion.Header>
                     <Accordion.Body>
                         {postData.comments.map((comment) => {
-                            return <CommentDisplay key={comment.id} commentData={comment}/>;
+                            return <CommentDisplay key={comment.id} commentData={comment} />;
                         })}
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
             <form className="d-flex my-1 m-3 mt-4" onSubmit={(e) => {submitComment(e)}}>
                 <div>
-                    <img src="https://source.unsplash.com/collection/happy-people" alt="avatar" className="rounded-circle me-2 avatar-style" />
+                    <img src={user.userProfile.imageUrl != null ? user.userProfile.imageUrl : DefaultProfilePic} alt="avatar" className="rounded-circle me-2 avatar-style" />
                 </div>
                 <input type="text" className="form-control border-0 rounded-pill bg-gray"  ref={commentInputRef} placeholder="Write a comment" />
             </form>

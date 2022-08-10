@@ -1,5 +1,7 @@
 import DropdownMenu from "./DropdownMenu";
 
+import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
+
 const AuthorImage = ({postData, user, handleDeletePost}) => {
 
 
@@ -34,7 +36,7 @@ const AuthorImage = ({postData, user, handleDeletePost}) => {
     return (
         <div className="d-flex justify-content-between position-relative">
             <div className="d-flex ">
-                <img src="https://source.unsplash.com/collection/happy-people" alt="avatar" className="rounded-circle me-2 avatar-style" />
+                <img src={postData.createdUser.userProfile.imageUrl != null ? postData.createdUser.userProfile.imageUrl : DefaultProfilePic} alt="avatar" className="rounded-circle me-2 avatar-style" />
                 <div>
                     <p className="m-0 fw-bold">{postData.createdUser.name}</p>
                     <span className="text-muted fs-7">{getDateTime(postData.createdTime)}</span>

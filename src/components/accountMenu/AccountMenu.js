@@ -35,6 +35,10 @@ const AccountMenu = () => {
         navigate("/");
     }
 
+    const navigateToProfilePage = () => {
+        navigate("/profile")
+    }
+
     return (
         <React.Fragment>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -86,7 +90,7 @@ const AccountMenu = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-            <MenuItem>
+            <MenuItem onClick={navigateToProfilePage}>
             <Avatar /> Profile
             </MenuItem>
             <MenuItem>
