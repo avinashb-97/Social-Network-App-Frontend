@@ -31,7 +31,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [sharecode, setSharecode] = useState("");
-    const [role, setRole] = useState("STUDENT");
+    const [role, setRole] = useState("USER");
     const institutionUrl = Constant.base_url+"api/institute";
     const registerUrl = Constant.base_url+"api/user";
 
@@ -200,10 +200,10 @@ const RegisterPage = () => {
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
-                                    defaultValue="STUDENT"
+                                    defaultValue="USER"
                                     onChange={(e) => handleRadioChage(e)}
                                 >
-                                    <FormControlLabel value="STUDENT" control={<Radio />} label="Student" />
+                                    <FormControlLabel value="USER" control={<Radio />} label="Student" />
                                     <FormControlLabel value="STAFF" control={<Radio />} label="Staff" />
                                 </RadioGroup>
                             </FormControl>
