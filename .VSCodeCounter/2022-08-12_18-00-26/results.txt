@@ -1,0 +1,106 @@
+Date : 2022-08-12 18:00:26
+Directory : h:\Project\sns-frontend\src
+Total : 61 files,  3343 codes, 165 comments, 563 blanks, all 4071 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         47 |      2,984 |        162 |        486 |      3,632 |
+| CSS        |         11 |        356 |          3 |         77 |        436 |
+| XML        |          3 |          3 |          0 |          0 |          3 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                             | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                |         61 |      3,343 |        165 |        563 |      4,071 |
+| components                                                                       |         49 |      3,167 |        156 |        519 |      3,842 |
+| components\accountMenu                                                           |          1 |        103 |          0 |         15 |        118 |
+| components\addContent                                                            |          2 |         92 |         12 |         21 |        125 |
+| components\body                                                                  |          2 |        132 |          1 |         18 |        151 |
+| components\changePassword                                                        |          1 |         80 |          0 |         16 |         96 |
+| components\eventsPage                                                            |          3 |        383 |         34 |         45 |        462 |
+| components\groupPage                                                             |          6 |        494 |         28 |         71 |        593 |
+| components\home                                                                  |          1 |         29 |          0 |          7 |         36 |
+| components\institutionAdminPanel                                                 |          8 |        488 |          2 |         67 |        557 |
+| components\institutionLogin                                                      |          3 |        185 |          0 |         44 |        229 |
+| components\loginPage                                                             |          3 |        481 |          5 |         83 |        569 |
+| components\peerPage                                                              |          4 |        100 |          0 |         14 |        114 |
+| components\post                                                                  |          7 |        291 |          0 |         55 |        346 |
+| components\profilePage                                                           |          3 |        190 |         73 |         37 |        300 |
+| components\utils                                                                 |          4 |         87 |          1 |         24 |        112 |
+| constants                                                                        |          1 |          6 |          0 |          4 |         10 |
+| resources                                                                        |          2 |          2 |          0 |          0 |          2 |
+| resources\images                                                                 |          2 |          2 |          0 |          0 |          2 |
+| services                                                                         |          1 |         37 |          0 |         12 |         49 |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                         | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| h:\Project\sns-frontend\src\App.css                                              | CSS        |         37 |          0 |          6 |         43 |
+| h:\Project\sns-frontend\src\App.js                                               | JavaScript |         45 |          0 |         11 |         56 |
+| h:\Project\sns-frontend\src\App.test.js                                          | JavaScript |          7 |          0 |          2 |          9 |
+| h:\Project\sns-frontend\src\components\Header.js                                 | JavaScript |         32 |          0 |          2 |         34 |
+| h:\Project\sns-frontend\src\components\accountMenu\AccountMenu.js                | JavaScript |        103 |          0 |         15 |        118 |
+| h:\Project\sns-frontend\src\components\addContent\AddContent.js                  | JavaScript |         59 |         12 |         11 |         82 |
+| h:\Project\sns-frontend\src\components\addContent\addContent.css                 | CSS        |         33 |          0 |         10 |         43 |
+| h:\Project\sns-frontend\src\components\body\Body.js                              | JavaScript |        125 |          0 |         18 |        143 |
+| h:\Project\sns-frontend\src\components\body\body.css                             | CSS        |          7 |          1 |          0 |          8 |
+| h:\Project\sns-frontend\src\components\changePassword\ChangePassword.js          | JavaScript |         80 |          0 |         16 |         96 |
+| h:\Project\sns-frontend\src\components\eventsPage\EventCard.js                   | JavaScript |         59 |          0 |          9 |         68 |
+| h:\Project\sns-frontend\src\components\eventsPage\EventDropDown.js               | JavaScript |         76 |          0 |          9 |         85 |
+| h:\Project\sns-frontend\src\components\eventsPage\EventPage.js                   | JavaScript |        248 |         34 |         27 |        309 |
+| h:\Project\sns-frontend\src\components\groupPage\GroupCard.js                    | JavaScript |         49 |          0 |          9 |         58 |
+| h:\Project\sns-frontend\src\components\groupPage\GroupDropDown.js                | JavaScript |         76 |          0 |          9 |         85 |
+| h:\Project\sns-frontend\src\components\groupPage\GroupHead.js                    | JavaScript |         34 |          0 |          5 |         39 |
+| h:\Project\sns-frontend\src\components\groupPage\GroupPage.js                    | JavaScript |        317 |         28 |         43 |        388 |
+| h:\Project\sns-frontend\src\components\groupPage\GroupPostPage.js                | JavaScript |         10 |          0 |          5 |         15 |
+| h:\Project\sns-frontend\src\components\groupPage\groupStyle.css                  | CSS        |          8 |          0 |          0 |          8 |
+| h:\Project\sns-frontend\src\components\home\Home.js                              | JavaScript |         29 |          0 |          7 |         36 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\ContentContainer.js | JavaScript |         13 |          0 |          5 |         18 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\Courses.js          | JavaScript |        166 |          1 |         21 |        188 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\Departments.js      | JavaScript |        200 |          0 |         23 |        223 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\InstitutionHome.js  | JavaScript |         35 |          1 |          6 |         42 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\NavBar.js           | JavaScript |         31 |          0 |          5 |         36 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\SideNav.js          | JavaScript |         24 |          0 |          3 |         27 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\StudentApprovals.js | JavaScript |          8 |          0 |          2 |         10 |
+| h:\Project\sns-frontend\src\components\institutionAdminPanel\insHome.css         | CSS        |         11 |          0 |          2 |         13 |
+| h:\Project\sns-frontend\src\components\institutionLogin\InstitutionLogin.js      | JavaScript |         78 |          0 |         16 |         94 |
+| h:\Project\sns-frontend\src\components\institutionLogin\InstitutionSignup.js     | JavaScript |         90 |          0 |         19 |        109 |
+| h:\Project\sns-frontend\src\components\institutionLogin\insLogin.css             | CSS        |         17 |          0 |          9 |         26 |
+| h:\Project\sns-frontend\src\components\loginPage\LoginPage.js                    | JavaScript |         93 |          3 |         15 |        111 |
+| h:\Project\sns-frontend\src\components\loginPage\RegisterPage.js                 | JavaScript |        248 |          0 |         40 |        288 |
+| h:\Project\sns-frontend\src\components\loginPage\loginPage.css                   | CSS        |        140 |          2 |         28 |        170 |
+| h:\Project\sns-frontend\src\components\peerPage\ContactCard.js                   | JavaScript |         30 |          0 |          5 |         35 |
+| h:\Project\sns-frontend\src\components\peerPage\CourseCard.js                    | JavaScript |         20 |          0 |          3 |         23 |
+| h:\Project\sns-frontend\src\components\peerPage\PeerPage.js                      | JavaScript |         44 |          0 |          6 |         50 |
+| h:\Project\sns-frontend\src\components\peerPage\peerPageStyle.css                | CSS        |          6 |          0 |          0 |          6 |
+| h:\Project\sns-frontend\src\components\post\AuthorImage.js                       | JavaScript |         41 |          0 |         10 |         51 |
+| h:\Project\sns-frontend\src\components\post\CommentDisplay.js                    | JavaScript |         14 |          0 |          4 |         18 |
+| h:\Project\sns-frontend\src\components\post\DropdownMenu.js                      | JavaScript |         76 |          0 |          9 |         85 |
+| h:\Project\sns-frontend\src\components\post\LikeAndComment.js                    | JavaScript |         35 |          0 |          7 |         42 |
+| h:\Project\sns-frontend\src\components\post\LikeCount.js                         | JavaScript |         16 |          0 |          4 |         20 |
+| h:\Project\sns-frontend\src\components\post\Post.js                              | JavaScript |         55 |          0 |          8 |         63 |
+| h:\Project\sns-frontend\src\components\post\post.css                             | CSS        |         54 |          0 |         13 |         67 |
+| h:\Project\sns-frontend\src\components\profilePage\PeerProfilePage.js            | JavaScript |          9 |          0 |          5 |         14 |
+| h:\Project\sns-frontend\src\components\profilePage\ProfilePage.js                | JavaScript |        150 |         73 |         25 |        248 |
+| h:\Project\sns-frontend\src\components\profilePage\profile.css                   | CSS        |         31 |          0 |          7 |         38 |
+| h:\Project\sns-frontend\src\components\utils\AlertBox.js                         | JavaScript |          9 |          0 |          3 |         12 |
+| h:\Project\sns-frontend\src\components\utils\DialogBox.js                        | JavaScript |         46 |          1 |         10 |         57 |
+| h:\Project\sns-frontend\src\components\utils\FormDialogBox.js                    | JavaScript |         24 |          0 |          8 |         32 |
+| h:\Project\sns-frontend\src\components\utils\PrivateRoute.js                     | JavaScript |          8 |          0 |          3 |         11 |
+| h:\Project\sns-frontend\src\constants\Constant.js                                | JavaScript |          6 |          0 |          4 |         10 |
+| h:\Project\sns-frontend\src\index.css                                            | CSS        |         12 |          0 |          2 |         14 |
+| h:\Project\sns-frontend\src\index.js                                             | JavaScript |         16 |          5 |          4 |         25 |
+| h:\Project\sns-frontend\src\logo.svg                                             | XML        |          1 |          0 |          0 |          1 |
+| h:\Project\sns-frontend\src\reportWebVitals.js                                   | JavaScript |         12 |          0 |          2 |         14 |
+| h:\Project\sns-frontend\src\resources\images\people_svg.svg                      | XML        |          1 |          0 |          0 |          1 |
+| h:\Project\sns-frontend\src\resources\images\welcome_svg.svg                     | XML        |          1 |          0 |          0 |          1 |
+| h:\Project\sns-frontend\src\services\AuthService.js                              | JavaScript |         37 |          0 |         12 |         49 |
+| h:\Project\sns-frontend\src\setupTests.js                                        | JavaScript |          1 |          4 |          1 |          6 |
+| Total                                                                            |            |      3,343 |        165 |        563 |      4,071 |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

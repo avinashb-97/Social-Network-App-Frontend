@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SideNav from "./SideNav";
 import './insHome.css';
 
-const NavBar = () => {
+const NavBar = ({institute}) => {
 
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#features" disabled>Queen Mary University of London</Nav.Link>
+                    <Nav.Link href="#features" disabled>{institute.name}</Nav.Link>
                 </Nav>
                 <Nav>
                     <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>

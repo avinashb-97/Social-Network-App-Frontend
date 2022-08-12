@@ -8,6 +8,12 @@ import Axios from 'axios';
 import Constant from '../../constants/Constant';
 import AlertBox from '../utils/AlertBox';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 const RegisterPage = () => {
 
 
@@ -25,7 +31,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [sharecode, setSharecode] = useState("");
-
+    const [role, setRole] = useState("STUDENT");
     const institutionUrl = Constant.base_url+"api/institute";
     const registerUrl = Constant.base_url+"api/user";
 
@@ -114,6 +120,10 @@ const RegisterPage = () => {
         setSharecode(val);
     }
 
+    const handleRadioChage = (e) => {
+        setRole(e.target.value);
+    }
+
     const registerUser = (event) => {
         event.preventDefault();
         
@@ -133,7 +143,8 @@ const RegisterPage = () => {
             instituteId: instituteId,
             departmentId: departmentId,
             courseId: courseId,
-            code: sharecode
+            code: sharecode,
+            role: role
         };
 
         console.log(data);
@@ -183,6 +194,19 @@ const RegisterPage = () => {
                                 <span><FontAwesomeIcon icon={faLock} color='grey' className='photo-text'></FontAwesomeIcon></span>
                                 <input type="password" id='confirmPassword' onChange={(e) => updateConfirmPassword(e)} placeholder="Confirm Password" required/>
                             </div>
+                            <FormControl className="mb-3 d-flex flex-row">
+                                <FormLabel id="demo-row-radio-buttons-group-label" style={{fontWeight:'bold', marginRight:'20px', marginTop:'10px', marginLeft:'10px'}}>Role : </FormLabel>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                    defaultValue="STUDENT"
+                                    onChange={(e) => handleRadioChage(e)}
+                                >
+                                    <FormControlLabel value="STUDENT" control={<Radio />} label="Student" />
+                                    <FormControlLabel value="STAFF" control={<Radio />} label="Staff" />
+                                </RadioGroup>
+                            </FormControl>
                             <div className="form-input">
                                 <span><FontAwesomeIcon icon={faBuildingColumns} color='grey' className='photo-text'></FontAwesomeIcon></span>
                                 <select onChange={(e) => handleSelectChange(e)}> 
@@ -194,7 +218,7 @@ const RegisterPage = () => {
                                     }
                                 </select>
                             </div>
-                            { departments.length != 0 && <RegisterDepartmentList departments={departments} onDepartmentChange={handleDepartmentChange} onCourseChange={handeCourseChange} />}
+                            { departments.length != 0 && <RegisterDepartmentList departments={departments} onDepartmentChange={handleDepartmentChange} role={role} onCourseChange={handeCourseChange} />}
                             <div className="form-input">
                                 <span><FontAwesomeIcon icon={faKey} color='grey' className='photo-text'></FontAwesomeIcon></span>
                                 <input type="text" name="" onChange={(e) => updateSharecode(e)} placeholder="University Share Code" required/>
@@ -217,7 +241,7 @@ const RegisterPage = () => {
     );
 }
 
-const RegisterDepartmentList = ({departments, onDepartmentChange, onCourseChange}) => {
+const RegisterDepartmentList = ({departments, onDepartmentChange, onCourseChange, role}) => {
 
     const [courses, setCourses] = useState([]);
 
@@ -249,7 +273,7 @@ const RegisterDepartmentList = ({departments, onDepartmentChange, onCourseChange
                     }
                 </select>
             </div>
-            { courses.length != 0 && <RegisterCourseList courses={courses} onCourseChange={onCourseChange}/>}
+            { courses.length != 0 && role != "STAFF" && <RegisterCourseList courses={courses} onCourseChange={onCourseChange}/>}
         </div>
     );
 }

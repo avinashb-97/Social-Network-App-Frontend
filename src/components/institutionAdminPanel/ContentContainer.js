@@ -9,8 +9,8 @@ const ContentContainer = ({activeMenu}) => {
 
     return (
         <div>
-            {activeMenu == sideMenu[0] && <StudentApprovals/>}
-            {activeMenu == sideMenu[1] && <Departments/>}
+            {activeMenu == sideMenu[0] && <Departments/>}
+            {activeMenu == sideMenu[1] && <StudentApprovals/>}
         </div>
     );
 }

@@ -7,9 +7,10 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import DefaultEventPic from '../../resources/images/DefaultEventImage.png';
-// import './peerPageStyle.css'
+import AuthService from '../../services/AuthService';
+import EventDropDown from './EventDropDown';
 
-const EventCard = ({event}) => {
+const EventCard = ({event, editEvent}) => {
 
     const getDateTime = (dateTime) => {
         const date = new Date(dateTime);
@@ -37,9 +38,14 @@ const EventCard = ({event}) => {
         return monthName + ' ' + dd + ' ' + yyyy;
     }
 
+    const handleEditCurrentEvent = () => {
+        editEvent(event);
+    }
+
 
   return (
-    <Card sx={{ height: '250px', display: 'flex', marginTop: '30px', }}>
+    <Card sx={{ height: '250px', display: 'flex', marginTop: '30px', }} className="position-relative shadow">
+      {AuthService.getCurrentUserMail() == event.createdUser.email && <EventDropDown handleEditEvent={handleEditCurrentEvent}/>}
       <CardMedia
         component="img"
         image={event.imageUrl != null ? event.imageUrl : DefaultEventPic}

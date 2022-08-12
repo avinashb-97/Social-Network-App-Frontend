@@ -13,25 +13,37 @@ const ChangePassword = () => {
     const [newPassword, setNewPassword] = useState("");
     const [conPassword, setConPassword] = useState("");
     const [showalert, setShowalert] = useState(false);
+    const [alert, setAlert] = useState("");
+    const [type, setType] = useState("");
 
     const userUrl = Constant.base_url+"api/user/changepassword";
 
-    const changepassword = () => {
-        
+    const changepassword = (e) => {
+        e.preventDefault();
         if(newPassword != conPassword)
         {
+            setShowalert(true);
+            setAlert("Password and confirm password should be same !");
+            setType("warning");
             return;
         }
         const token = AuthService.getCurrentUserToken();
         Axios.defaults.headers.common['Authorization'] = token;
+        const formData = new FormData();
+        formData.append("oldpass", currPassword);
+        formData.append("newpass", newPassword);
+        formData.append("confirmpass", conPassword);
         
-        Axios.put(userUrl, formData)
+        Axios.post(userUrl, formData)
         .then(res => {
-            console.log(res.data);
-            setButtonClick(!buttonclick);
+            setShowalert(true);
+            setAlert("Password changed successfully !");
+            setType("success");
         })
         .catch(res => {
-            console.log(res);
+            setShowalert(true);
+            setAlert("Error while changing password");
+            setType("danger");
         })
     }
 
@@ -46,25 +58,25 @@ const ChangePassword = () => {
                     <div className='bg-white m-5 p-5 '>
                         <div className='p-5'>
                             
-                        {showalert && <AlertBox variant={'success'} message={'Password successfully changed'}/>}
-                        <form>
+                        {showalert && <AlertBox variant={type} message={alert}/>}
+                        <form onSubmit={(e) => changepassword(e)}>
                         <div class="form-group mt-3">
-                            <label for="exampleInputPassword1">Current Password</label>
+                            <label htmlFor="exampleInputPassword1">Current Password</label>
                             <input type="password" class="form-control" onChange={(e) => setCurrPassword(e.target.value)} id="exampleInputPassword1" placeholder="Current Password"/>
                         </div>
                         
                         <div class="form-group mt-3">
-                            <label for="exampleInputPassword1">New Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" onChange={(e) => setNewPassword(e.target.value)}  placeholder="New Password"/>
+                            <label htmlFor="exampleInputPassword1">New Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" onChange={(e) => setNewPassword(e.target.value)}  placeholder="New Password"/>
                         </div>
                         
                         <div class="form-group mt-3">
-                            <label for="exampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" onChange={(e) => setConPassword(e.target.value)}  placeholder="Confirm Password"/>
+                            <label htmlFor="exampleInputPassword1">Confirm Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword3" onChange={(e) => setConPassword(e.target.value)}  placeholder="Confirm Password"/>
                         </div>
                         <div className='text-center mt-5'>
                             
-                            <button type="submit" class="btn btn-primary text-center" onClick={changepassword}>Change Password</button>
+                            <button type="submit" class="btn btn-primary text-center">Change Password</button>
                         </div>
                         </form>
 

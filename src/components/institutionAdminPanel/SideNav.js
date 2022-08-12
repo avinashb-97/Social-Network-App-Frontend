@@ -1,7 +1,7 @@
 
 import './insHome.css';
 
-const SideNav = ({menuList, currentMenu, onClickMenu}) => {
+const SideNav = ({menuList, currentMenu, onClickMenu, institute}) => {
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-light side-nav" >
             <ul className="nav nav-pills flex-column mb-auto">
@@ -18,7 +18,7 @@ const SideNav = ({menuList, currentMenu, onClickMenu}) => {
             </ul>
             <hr/>
             <div>
-                <p>Share Code: 201232</p>
+                <p>Share Code: {institute.code}</p>
             </div>
         </div>      
     );

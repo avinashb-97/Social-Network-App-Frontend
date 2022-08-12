@@ -7,11 +7,13 @@ import { useState, useEffect } from 'react';
 import AuthService from '../../services/AuthService';
 import Constant from '../../constants/Constant';
 import Axios from 'axios';
+import AlertBox from '../utils/AlertBox';
 
 const LoginPage = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState({email:"", password:""});
+    const [showError, setShowError] = useState(false);
     
     const login_url = Constant.base_url+"login";
 
@@ -44,6 +46,8 @@ const LoginPage = () => {
         })
         .catch(res => {
             console.log(res);
+            
+            setShowError(true);
         })
     }
 
@@ -54,11 +58,12 @@ const LoginPage = () => {
                 <div className="col-lg-6 col-md-6 infinity-form-container">
                     <div className="col-lg-9 col-md-12 col-sm-8 col-xs-12 infinity-form">
                         <div className="text-center mb-3 mt-5">
-                            {/* <img src={image} width="150px"/> */}
                             <h1 className='sn-title'>Social Network</h1>
                         </div>
                         <div className="text-center mb-4">
                     <h4>Already have an account ?</h4>
+                    
+                    {showError &&  <AlertBox variant={'danger'} message={'Error while logging in'} />}
                 </div>
                         <form className="px-3" onSubmit={(e) => handleSubmit(e)}>
                             <div className="form-input">
@@ -88,11 +93,11 @@ const LoginPage = () => {
                                 <span className='m-2'><FontAwesomeIcon icon={faBuildingColumns} color='white' className='photo-text'></FontAwesomeIcon></span>
                                 Login as Institution
                             </Link>
-                            
+{/*                             
                             <Link to="/" className="btn btn-secondary btn-effect m-auto">
                                 <span className='m-2'><FontAwesomeIcon icon={faBriefcase} color='white' className='photo-text'></FontAwesomeIcon></span>
                                 Login as Recruiter
-                            </Link>
+                            </Link> */}
                         </div>
                         
                     </div>		

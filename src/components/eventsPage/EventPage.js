@@ -58,8 +58,9 @@ const EventPage = () => {
     };
   
     const [show, setShow] = useState(false);
-    const handleShow = () => {
-        setTime(new Date());
+    const handleShow = (dontChangeTime) => {
+        if(!dontChangeTime)
+            setTime(new Date());
         setShow(true);
     }
 
@@ -74,6 +75,9 @@ const EventPage = () => {
     const [placeError, setPlaceError] = useState(false);
     const [descError, setDescError] = useState(false);
     const [timeError, setTimeError] = useState(false);
+
+    const [edit, setEdit] = useState(false);
+    const [editId, setEditId] = useState(-1);
 
     const handleEventName = (e) => {
         const val = e.target.value;
@@ -165,6 +169,70 @@ const EventPage = () => {
         setImage(file);
     }
 
+    const handleEditEvent = (event) => {
+        console.log(event);
+        setEdit(true);
+        setEditId(event.id);
+        setEventName(event.name);
+        setDescription(event.description);
+        setPlace(event.place);
+        setTime(new Date(event.eventDateTime));
+        setVisibility(event.visibility);
+        handleShow(true);
+    }
+
+    const editEvent = () => {
+        let err = false;
+        if(eventName === "")
+        {
+            setEventError(true);
+            err = true;
+        }
+        if(place === "")
+        {
+            setPlaceError(true);
+            err = true;
+        }
+        if(description === "")
+        {
+            setDescError(true);
+            err = true;
+        }
+        if(time < new Date())
+        {
+            setTimeError(true);
+            err = true;
+        }
+        if(err) 
+        {
+            return;
+        }
+       
+        const formData = new FormData();
+        formData.append("name",eventName);
+        formData.append("place",place);
+        formData.append("desc",description);
+        formData.append("eventTime",time);
+        formData.append("visibility",visibility);
+        formData.append("image", image);
+
+        const token = AuthService.getCurrentUserToken();
+        Axios.defaults.headers.common['Authorization'] = token;
+        let url = eventUrl+"/"+editId;
+        Axios.put(url, formData)
+        .then(res => {
+            const newEvent = res.data;
+            const newDataList = eventData.map((event) => {
+                return event.id == editId ? newEvent : event;
+            })
+            setEventData(newDataList);
+        })
+        .catch(res => {
+            console.log(res);
+        })
+        handleClose();
+    }
+
     return (
         <div style={{overflow:'hidden'}}>
             <Header currElement={'events'}/>
@@ -185,14 +253,14 @@ const EventPage = () => {
                             keyboard={false}
                         >
                             <Modal.Header closeButton>
-                            <Modal.Title>Create New Event</Modal.Title>
+                            <Modal.Title>{edit ? "Edit Event" : "Create New Event"}</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div className="input-group mb-3">
-                                    <TextField id="outlined-basic" className="w-100" label="Event Name" error={eventError} autoComplete='off' variant="outlined" onChange={(e) => handleEventName(e)}/>
+                                    <TextField id="outlined-basic" className="w-100" label="Event Name" value={eventName} error={eventError} autoComplete='off' variant="outlined" onChange={(e) => handleEventName(e)}/>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <TextField id="outlined-basic" className="w-100" label="Place"  error={placeError}  autoComplete='off' variant="outlined" onChange={(e) => handlePlace(e)}/>
+                                    <TextField id="outlined-basic" className="w-100" label="Place" value={place} error={placeError}  autoComplete='off' variant="outlined" onChange={(e) => handlePlace(e)}/>
                                 </div>
                                 <div className="input-group mb-3">
                                     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -200,7 +268,7 @@ const EventPage = () => {
                                     </LocalizationProvider>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <TextField id="outlined-multiline-static" className="w-100" error={descError}  autoComplete='off' label="Description" multiline rows={5} onChange={(e) => handleDescription(e)}/>
+                                    <TextField id="outlined-multiline-static" className="w-100" error={descError} value={description}  autoComplete='off' label="Description" multiline rows={5} onChange={(e) => handleDescription(e)}/>
                                 </div>
                                 <Form.Group controlId="formFile" className="mb-3">
                                     <Form.Label>Event Icon</Form.Label>
@@ -218,14 +286,14 @@ const EventPage = () => {
                             <Button variant="secondary" onClick={handleClose}>
                                 Cancel
                             </Button>
-                            <Button variant="primary" onClick={createEvent}>Submit</Button>
+                            <Button variant="primary" onClick={edit ? editEvent: createEvent}>Submit</Button>
                             </Modal.Footer>
                         </Modal>
                     </div>
                     <div style={{marginTop:'80px'}}>
                             {
                                 eventData.map((event) => {
-                                    return <EventCard event={event}/>
+                                    return <EventCard event={event} key={event.id} editEvent={handleEditEvent}/>
                                 })
                             }
                         </div>

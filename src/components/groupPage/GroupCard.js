@@ -34,7 +34,7 @@ export default function GroupCard({group, onJoinGroupClick, onLeaveGroup, handle
     }
 
     return (
-        <Card sx={{ height: '380px', margin: '15px', width: '360px' }} className="position-relative">
+        <Card sx={{ height: '380px', margin: '15px', width: '360px', borderRadius:"2%" }} className="position-relative shadow">
         {AuthService.getCurrentUserMail() == group.createdUser.email && <GroupDropDown handleEditGroup={handleEditCurrentGroup}/>}
         <Box sx={{  }}>
         <CardMedia
