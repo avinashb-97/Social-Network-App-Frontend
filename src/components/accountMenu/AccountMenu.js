@@ -11,13 +11,16 @@ import AuthService from '../../services/AuthService';
 import { useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket, faEye } from '@fortawesome/free-solid-svg-icons';
+import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
 
 
 
 const AccountMenu = () => {
 
     const navigate = useNavigate();
+
+    const imageUrl = localStorage.getItem('profile_pic_url');
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -33,6 +36,10 @@ const AccountMenu = () => {
     const handleLogout = () => {
         AuthService.logout();
         navigate("/");
+    }
+
+    const handleChangePassword = () => {
+        navigate("/changepassword");
     }
 
     const navigateToProfilePage = () => {
@@ -51,7 +58,7 @@ const AccountMenu = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
             >
-                <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                <Avatar sx={{ width: 32, height: 32 }}><img src={imageUrl != 'null' ? imageUrl : DefaultProfilePic} /></Avatar>
             </IconButton>
             </Tooltip>
         </Box>
@@ -93,8 +100,9 @@ const AccountMenu = () => {
             <MenuItem onClick={navigateToProfilePage}>
             <Avatar /> Profile
             </MenuItem>
-            <MenuItem>
-            <Avatar /> My account
+            <MenuItem onClick={handleChangePassword}>
+                <FontAwesomeIcon icon={faEye} color="grey"/>
+                <span style={{marginLeft:"6px"}}>Change password</span>
             </MenuItem>
             <Divider />
             <MenuItem onClick={handleLogout}>

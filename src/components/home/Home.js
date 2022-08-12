@@ -5,7 +5,7 @@ import Axios from "axios";
 import AuthService from "../../services/AuthService";
 import Constant from "../../constants/Constant";
 
-const Home = () => {
+const Home = ({groupId}) => {
 
     const [userData, setUserData] = useState({name:"User Name", email:"user@mail.com"});
     const userUrl = Constant.base_url+"api/user";
@@ -17,16 +17,18 @@ const Home = () => {
         Axios.get(userUrl)
         .then(res => {
             setUserData(res.data);
+            localStorage.setItem('profile_pic_url', res.data.userProfile.imageUrl);
         })
         .catch(res => {
             console.log(res);
         })
+
     },[]);
 
     return (
         <div style={{overflow:'hidden'}}>
-            <Header currElement={'home'}/>
-            <Body user={userData}/>
+            <Header currElement={groupId != undefined ? 'groups' : 'home'}/>
+            <Body user={userData} groupId={groupId}/>
         </div>
     );
 }

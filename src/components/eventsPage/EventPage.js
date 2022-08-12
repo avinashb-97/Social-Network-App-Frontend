@@ -132,7 +132,8 @@ const EventPage = () => {
         Axios.defaults.headers.common['Authorization'] = token;
         Axios.post(eventUrl, formData)
         .then(res => {
-            console.log(res.data);
+            const newEvent = res.data;
+            setEventData([...eventData, newEvent]);
         })
         .catch(res => {
             console.log(res);

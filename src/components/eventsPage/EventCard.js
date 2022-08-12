@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import DefaultEventPic from '../../resources/images/DefaultEventImage.png';
 // import './peerPageStyle.css'
 
 const EventCard = ({event}) => {
@@ -41,7 +42,7 @@ const EventCard = ({event}) => {
     <Card sx={{ height: '250px', display: 'flex', marginTop: '30px', }}>
       <CardMedia
         component="img"
-        image="https://source.unsplash.com/collection/happy-people"
+        image={event.imageUrl != null ? event.imageUrl : DefaultEventPic}
         alt="Live from space album cover"
         style={{width:'250px'}}
       />

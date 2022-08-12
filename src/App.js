@@ -15,6 +15,8 @@ import GroupPage from './components/groupPage/GroupPage';
 import EventPage from './components/eventsPage/EventPage';
 import ProfilePage from './components/profilePage/ProfilePage';
 import PeerProfilePage from './components/profilePage/PeerProfilePage';
+import ChangePassword from './components/changePassword/ChangePassword';
+import GroupPostPage from './components/groupPage/GroupPostPage';
 
 function App() {
   return (
@@ -31,7 +33,9 @@ function App() {
           <Route exact path="/groups" element={ <GroupPage /> } />
           <Route exact path="/events" element={ <EventPage /> } />
           <Route exact path="/profile" element={ <ProfilePage /> } />
-          <Route path='/peers/:id' element={<PeerProfilePage/>} />
+          <Route path='/peers/:id' element={<PeerProfilePage/>} /> 
+          <Route path='/groups/:id' element={<GroupPostPage/>} />          
+          <Route path='/changepassword' element={<ChangePassword/>} />
         </Route>
         
         <Route exact path="/institution" element={ <InstitutionLogin /> } />

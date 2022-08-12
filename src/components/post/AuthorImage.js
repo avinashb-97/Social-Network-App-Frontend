@@ -1,4 +1,5 @@
 import DropdownMenu from "./DropdownMenu";
+import { Link } from "react-router-dom";
 
 import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
 
@@ -38,7 +39,7 @@ const AuthorImage = ({postData, user, handleDeletePost}) => {
             <div className="d-flex ">
                 <img src={postData.createdUser.userProfile.imageUrl != null ? postData.createdUser.userProfile.imageUrl : DefaultProfilePic} alt="avatar" className="rounded-circle me-2 avatar-style" />
                 <div>
-                    <p className="m-0 fw-bold">{postData.createdUser.name}</p>
+                    <Link to={`/peers/${postData.createdUser.id}`} style={{ textDecoration: 'none' }}><p className="m-0 fw-bold">{postData.createdUser.name}</p></Link>
                     <span className="text-muted fs-7">{getDateTime(postData.createdTime)}</span>
                 </div>
                 {user.email == postData.createdUser.email && <DropdownMenu handleDeletePost={handleDeletePost}/>}

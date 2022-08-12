@@ -5,11 +5,13 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Constant from '../../constants/Constant';
 import AuthService from '../../services/AuthService';
+import GroupHead from '../groupPage/GroupHead';
 
-const Body = ({user}) => {
+const Body = ({user, groupId}) => {
 
     const [postData, setPostData] = useState([]);
-    const postUrl = Constant.base_url+"api/post"
+    const [groupData, setGroupData] = useState([]);
+    const postUrl = groupId == undefined ? Constant.base_url+"api/post" : Constant.base_url+"api/group/"+groupId+"/post"
 
     useEffect(() => {
         const token = AuthService.getCurrentUserToken();
@@ -21,6 +23,18 @@ const Body = ({user}) => {
         .catch(res => {
             console.log(res);
         })
+
+        if(groupId != undefined)
+        {
+            const url = Constant.base_url+"api/group/"+groupId;
+            Axios.get(url)
+            .then(res => {
+                setGroupData(res.data);
+            })
+            .catch(res => {
+                console.log(res);
+            })
+        }
     },[]);
 
     const addContent = (content, image) => {
@@ -46,7 +60,8 @@ const Body = ({user}) => {
         
         const token = AuthService.getCurrentUserToken();
         Axios.defaults.headers.common['Authorization'] = token;
-        const url = postUrl+"/"+post.id;
+        let url = Constant.base_url+"api/post"
+        url = url+"/"+post.id;
         Axios.delete(url)
         .then(res => {
             const currData = postData.filter((currPost) => currPost != post);
@@ -62,7 +77,8 @@ const Body = ({user}) => {
         console.log("Called");
         const token = AuthService.getCurrentUserToken();
         Axios.defaults.headers.common['Authorization'] = token;
-        const url = postUrl+"/"+post.id+"/"+(isLiked ? "like" : "unlike");
+        let url = Constant.base_url+"api/post"
+        url = url+"/"+post.id+"/"+(isLiked ? "like" : "unlike");
         
         Axios.post(url)
         .then(res => {
@@ -84,7 +100,9 @@ const Body = ({user}) => {
 
         const token = AuthService.getCurrentUserToken();
         Axios.defaults.headers.common['Authorization'] = token;
-        const commentUrl = postUrl+"/"+post.id+"/comment";
+        
+        let url = Constant.base_url+"api/post"
+        const commentUrl = url+"/"+post.id+"/comment";
         const data = {comment: comment};
         Axios.post(commentUrl, data)
         .then(res => {
@@ -109,6 +127,7 @@ const Body = ({user}) => {
                 <div className="col-sm">
                 </div>
                 <div className="col-sm">
+                    {groupId != undefined && <div><GroupHead group={groupData}/></div>}
                     <AddContent onAddContent={addContent}/>
                     { postData.map((post) => {
                         return <Post key={post.id} postData={post} user={user} deletePostAction={deletePost} onClickLike={onClickLike} onAddComment={handleAddComment}/>

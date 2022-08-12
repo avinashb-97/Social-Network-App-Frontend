@@ -7,16 +7,11 @@ import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
 import { useState, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Form from 'react-bootstrap/Form';
-import MenuItem from '@mui/material/MenuItem';
 import Constant from '../../constants/Constant';
 import Axios from 'axios';
 import AuthService from '../../services/AuthService';
-import { NavLink } from 'react-router-dom';
 
 const ProfilePage = ({id}) => {
 
