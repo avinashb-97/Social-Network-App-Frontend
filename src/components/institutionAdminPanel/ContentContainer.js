@@ -1,5 +1,6 @@
 
-import StudentApprovals from "./StudentApprovals";
+import StudentPage from "./StudentPage";
+import StaffPage from "./StaffPage";
 import Constant from "../../constants/Constant";
 import Departments from "./Departments";
 
@@ -10,7 +11,8 @@ const ContentContainer = ({activeMenu}) => {
     return (
         <div>
             {activeMenu == sideMenu[0] && <Departments/>}
-            {activeMenu == sideMenu[1] && <StudentApprovals/>}
+            {activeMenu == sideMenu[1] && <StudentPage/>}
+            {activeMenu == sideMenu[2] && <StaffPage/>}
         </div>
     );
 }
