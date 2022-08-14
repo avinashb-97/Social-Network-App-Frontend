@@ -10,7 +10,9 @@ const login = (token, usertype) => {
     if(usertype != null && getUserRoles().includes(usertype))
     {
         localStorage.setItem("user_type", usertype);
+        return true;
     }
+    return false;
 }
 const isLoggedIn = (userType) => {
     return localStorage.getItem("token") != null && localStorage.getItem("user_type") == userType;

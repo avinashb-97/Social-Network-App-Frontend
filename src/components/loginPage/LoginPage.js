@@ -14,6 +14,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({email:"", password:""});
     const [showError, setShowError] = useState(false);
+
     
     const login_url = Constant.base_url+"login";
 
@@ -46,7 +47,6 @@ const LoginPage = () => {
         })
         .catch(res => {
             console.log(res);
-            
             setShowError(true);
         })
     }

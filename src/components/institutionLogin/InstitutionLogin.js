@@ -6,10 +6,12 @@ import Constant from '../../constants/Constant';
 import AuthService from '../../services/AuthService';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AlertBox from '../utils/AlertBox';
 
 const InstitutionLogin = () => {
 
     const navigate = useNavigate();
+    const [showError, setShowError] = useState(false);
 
     useEffect(() => {
         if(AuthService.isLoggedIn(Constant.userTypes.ADMIN))
@@ -35,11 +37,18 @@ const InstitutionLogin = () => {
         Axios.post(login_url, data)
         .then(res => {
             const token = res.headers.authorization;
-            AuthService.login(token, Constant.userTypes.ADMIN);
-            navigate("/institution/home");
+            if(!AuthService.login(token, Constant.userTypes.ADMIN))
+            {
+                setShowError(true);
+            }
+            else
+            {
+                navigate("/institution/home");
+            }
         })
         .catch(res => {
             console.log(res);
+            setShowError(true);
         })
     }
 
@@ -51,14 +60,14 @@ const InstitutionLogin = () => {
                 <div className="row justify-content-center">
                 <div className="col-md-12">
                     <div className="form-block position-relative">
-                        
                     <Link to="/" className='mb-2 position-absolute arrow-position'>
                         <span><FontAwesomeIcon icon={faLeftLong} color='black' className='photo-text'></FontAwesomeIcon></span>
                     </Link>
                     <div className="mb-4">
                         <h3>Institution Login</h3>
                     </div>
-
+                    
+                    {showError &&  <AlertBox variant={'danger'} message={'Error while logging in'} />}
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div>
                             <label htmlFor="email">Email</label>
