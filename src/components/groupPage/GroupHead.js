@@ -14,7 +14,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function GroupHead({group}) {
 
-  
     return (
         <Card sx={{ marginTop: '15px' }} className="position-relative">
         <Link to="/groups" className='position-absolute arrow-position-box m-4'>

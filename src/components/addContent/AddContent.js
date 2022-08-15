@@ -4,7 +4,6 @@ import { faCameraAlt, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 
-
 const AddContent = ({onAddContent}) => {
 
     const [contentText, setContentText] = useState("");

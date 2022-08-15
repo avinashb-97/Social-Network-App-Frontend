@@ -12,8 +12,6 @@ import { Link } from 'react-router-dom';
 
 export default function ContactCard({user}) {
 
-
-
   return (
     <Card sx={{ height: '120px', display: 'flex', margin: '15px', width: '360px' }}>
       <CardMedia

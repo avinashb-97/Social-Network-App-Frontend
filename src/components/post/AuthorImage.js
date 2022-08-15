@@ -1,11 +1,8 @@
 import DropdownMenu from "./DropdownMenu";
 import { Link } from "react-router-dom";
-
 import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
 
 const AuthorImage = ({postData, user, handleDeletePost}) => {
-
-
 
     const getDateTime = (dateTime) => {
         const date = new Date(dateTime);

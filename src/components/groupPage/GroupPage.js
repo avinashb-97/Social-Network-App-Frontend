@@ -21,7 +21,6 @@ import GroupCard from "./GroupCard";
 
 const GroupPage = () => {
 
-    // const [userData, setUserData] = useState({name:"User Name", email:"user@mail.com"});
     const groupUrl = Constant.base_url+"api/group";
     const [groupData, setGroupData] = useState([]);
     const [joinedGroup, setJoinedGroup] = useState([]);

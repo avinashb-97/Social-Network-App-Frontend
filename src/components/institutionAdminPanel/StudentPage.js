@@ -66,7 +66,6 @@ const StudentPage = () => {
                 <Table striped>
                     <thead>
                         <tr>
-                        {/* <th>#</th> */}
                         <th>Student Name</th>
                         <th>Email</th>
                         <th>Department</th>

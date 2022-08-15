@@ -9,12 +9,9 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import AuthService from '../../services/AuthService';
 import { useNavigate } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket, faEye } from '@fortawesome/free-solid-svg-icons';
 import DefaultProfilePic from '../../resources/images/ProfilePicDefault.png';
-
-
 
 const AccountMenu = () => {
 
